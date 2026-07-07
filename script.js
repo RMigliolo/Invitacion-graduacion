@@ -1,12 +1,13 @@
 /* =====================================================
    GRADUACIÓN GABINO LUCIANO 2026
-   SCRIPT.JS - FASE 2 AUDITADO
-   Correcciones:
-   - Evita errores de consola por elementos nulos.
-   - Corrige enlace de WhatsApp con encodeURIComponent completo.
-   - Evita confeti infinito al terminar la cuenta regresiva.
-   - Mejora compatibilidad móvil con swipe en carrusel.
-   - Respeta prefers-reduced-motion.
+   SCRIPT.JS - FASE 3 GALA PREMIUM+
+   Mejoras:
+   - Partículas avanzadas y optimizadas.
+   - Animación de birrete.
+   - Transiciones más elegantes.
+   - RSVP profesional con estado visual.
+   - Mensaje de WhatsApp completo, incluyendo canción.
+   - Optimización de rendimiento y compatibilidad móvil.
 ===================================================== */
 
 "use strict";
@@ -42,9 +43,29 @@ const isMobileViewport = () =>
     window.matchMedia &&
     window.matchMedia("(max-width: 768px)").matches;
 
+const requestIdle =
+    window.requestIdleCallback ||
+    function (callback) {
+        return window.setTimeout(callback, 450);
+    };
+
 function setText(selector, value) {
     const element = $(selector);
     if (element) element.textContent = value;
+}
+
+function setHidden(element, hidden) {
+    if (!element) return;
+    if (hidden) {
+        element.setAttribute("hidden", "");
+    } else {
+        element.removeAttribute("hidden");
+    }
+}
+
+function forceReflow(element) {
+    if (!element) return;
+    void element.offsetWidth;
 }
 
 /* =====================================================
@@ -69,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const openInvitationBtn = $("#openInvitationBtn");
     const audioBtn = $("#audioBtn");
     const bgMusic = $("#bgMusic");
+    const graduationCap = $("#graduationCap");
 
     const slidesContainer = $("#slides");
     const slides = $$(".slide");
@@ -78,6 +100,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const surveyCards = $$(".survey-card");
     const rsvpForm = $("#rsvpForm");
+    const rsvpStatus = $("#rsvpStatus");
+    const rsvpSubmitBtn = $("#rsvpSubmitBtn");
     const revealElements = $$(".glass-card,.notice-card");
 
     /* =====================================================
@@ -132,17 +156,31 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 
+    function launchCapAnimation(mode = "intro") {
+        if (!graduationCap || prefersReducedMotion) return;
+
+        const className = mode === "rsvp" ? "cap-burst" : "is-launched";
+        graduationCap.classList.remove("is-launched", "cap-burst");
+        forceReflow(graduationCap);
+        graduationCap.classList.add(className);
+
+        window.setTimeout(() => {
+            graduationCap.classList.remove(className);
+        }, mode === "rsvp" ? 1300 : 1650);
+    }
+
     function openInvitation() {
         if (introScreen) {
             introScreen.classList.add("intro-screen--hidden");
 
-            setTimeout(() => {
+            window.setTimeout(() => {
                 introScreen.setAttribute("hidden", "");
             }, 1000);
         }
 
         startMusic();
         launchWelcomeEffect();
+        launchCapAnimation("intro");
     }
 
     if (openInvitationBtn) {
@@ -220,7 +258,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!slidesContainer || slides.length === 0) return;
 
         currentSlide = (index + slides.length) % slides.length;
-        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        window.requestAnimationFrame(() => {
+            slidesContainer.style.transform = `translate3d(-${currentSlide * 100}%, 0, 0)`;
+        });
+
         updateDots();
     }
 
@@ -258,16 +300,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function startCarouselTimer() {
-        if (slides.length <= 1 || prefersReducedMotion) return;
-        carouselTimer = window.setInterval(nextSlide, 5000);
+        if (carouselTimer || slides.length <= 1 || prefersReducedMotion) return;
+        carouselTimer = window.setInterval(nextSlide, 5200);
+    }
+
+    function stopCarouselTimer() {
+        if (!carouselTimer) return;
+        clearInterval(carouselTimer);
+        carouselTimer = null;
     }
 
     function restartCarouselTimer() {
-        if (carouselTimer) {
-            clearInterval(carouselTimer);
-            carouselTimer = null;
-        }
-
+        stopCarouselTimer();
         startCarouselTimer();
     }
 
@@ -343,12 +387,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* =====================================================
-       CONFIRMACIÓN WHATSAPP
+       CONFIRMACIÓN RSVP + WHATSAPP
     ===================================================== */
+
+    function showRsvpStatus(message, type = "success") {
+        if (!rsvpStatus) return;
+
+        rsvpStatus.textContent = message;
+        rsvpStatus.classList.toggle("is-error", type === "error");
+        setHidden(rsvpStatus, false);
+    }
+
+    function clearInvalidStates() {
+        $$(".is-invalid", rsvpForm || document).forEach(element => {
+            element.classList.remove("is-invalid");
+        });
+    }
+
+    function setSubmitLoading(isLoading) {
+        if (!rsvpSubmitBtn) return;
+
+        rsvpSubmitBtn.classList.toggle("is-loading", isLoading);
+        rsvpSubmitBtn.disabled = isLoading;
+
+        const label = $("span", rsvpSubmitBtn);
+        if (label) {
+            label.textContent = isLoading ? "Preparando WhatsApp" : "Confirmar por WhatsApp";
+        }
+    }
 
     if (rsvpForm) {
         rsvpForm.addEventListener("submit", event => {
             event.preventDefault();
+            clearInvalidStates();
 
             const nameInput = $("#guestName");
             const attendanceInput = $("#attendance");
@@ -357,11 +428,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const name = nameInput ? nameInput.value.trim() : "";
             const attendance = attendanceInput ? attendanceInput.value.trim() : "";
-            const songSuggestion = songInput ? songInput.value.trim() : "";
+            const song = songInput ? songInput.value.trim() : "";
             const message = messageInput ? messageInput.value.trim() : "";
 
-            if (!name || !attendance) {
-                alert("Por favor completa tu nombre y confirma tu asistencia.");
+            const invalidFields = [];
+
+            if (!name && nameInput) invalidFields.push(nameInput);
+            if (!attendance && attendanceInput) invalidFields.push(attendanceInput);
+
+            if (invalidFields.length > 0) {
+                invalidFields.forEach(field => field.classList.add("is-invalid"));
+                invalidFields[0].focus();
+                showRsvpStatus("Por favor completa tu nombre y confirma tu asistencia antes de enviar.", "error");
                 return;
             }
 
@@ -370,15 +448,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 "",
                 `Nombre: ${name}`,
                 `Asistencia: ${attendance}`,
-                `Canción que no debe faltar: ${songSuggestion || "Sin sugerencia"}`,
                 `¿Cómo soy?: ${selectedPersonality || "Sin respuesta"}`,
+                `Canción que no debe faltar: ${song || "Sin sugerencia"}`,
                 `Mensaje: ${message || "Sin mensaje"}`
             ].join("\n");
 
             const url =
                 `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappText)}`;
 
+            setSubmitLoading(true);
+            showRsvpStatus("Tu confirmación está lista. Se abrirá WhatsApp para enviarla.");
+            launchCapAnimation("rsvp");
+            graduationConfetti(isMobileViewport() ? 28 : 52);
+
             window.open(url, "_blank", "noopener,noreferrer");
+
+            window.setTimeout(() => {
+                setSubmitLoading(false);
+            }, 900);
         });
     }
 
@@ -396,11 +483,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
             },
-            { threshold: 0.15 }
+            { threshold: 0.16, rootMargin: "0px 0px -40px 0px" }
         );
 
-        revealElements.forEach(item => {
+        revealElements.forEach((item, index) => {
             item.classList.add("reveal");
+            item.style.transitionDelay = `${Math.min(index * 65, 260)}ms`;
             revealObserver.observe(item);
         });
     } else {
@@ -408,58 +496,86 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =====================================================
-       PARTÍCULAS
+       PARTÍCULAS AVANZADAS
     ===================================================== */
 
-    function createParticle() {
-        if (prefersReducedMotion) return;
+    function createParticle(options = {}) {
+        if (prefersReducedMotion || document.hidden) return;
 
         const container = $("#particles");
         if (!container) return;
 
-        const particle = document.createElement("div");
-        const size = Math.random() * 5 + 2;
+        const maxParticles = isMobileViewport() ? 26 : 70;
+        if (container.children.length >= maxParticles) return;
 
-        particle.className = "particle";
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.background = Math.random() > 0.5 ? "#30d5c8" : "#c0c0c0";
+        const particle = document.createElement("span");
+        const types = options.types || ["dot", "spark", "line"];
+        const type = types[Math.floor(Math.random() * types.length)];
+        const size = options.size || Math.random() * 5 + 2;
+        const startX = options.x ?? Math.random() * 100;
+        const driftX = (Math.random() * 80 - 40) * (isMobileViewport() ? .55 : 1);
+        const duration = options.duration || Math.random() * 6200 + 6800;
+        const opacity = Math.random() * .45 + .35;
+        const colors = ["#30d5c8", "#ffffff", "#c0c0c0", "#f5d483"];
+
+        particle.className = `particle particle--${type}`;
+        particle.style.width = type === "line" ? "2px" : `${size}px`;
+        particle.style.height = type === "line" ? `${size * 7}px` : `${type === "spark" ? size * 2.8 : size}px`;
+        particle.style.left = `${startX}%`;
+        particle.style.top = options.y ? `${options.y}%` : "110%";
+        particle.style.opacity = String(opacity);
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
 
         container.appendChild(particle);
 
-        const duration = Math.random() * 10000 + 7000;
-
-        particle.animate(
+        const animation = particle.animate(
             [
-                { transform: "translateY(0)", opacity: 0.8 },
-                { transform: "translateY(-120vh)", opacity: 0 }
+                {
+                    transform: "translate3d(0, 0, 0) rotate(0deg)",
+                    opacity
+                },
+                {
+                    transform: `translate3d(${driftX}px, -124vh, 0) rotate(${Math.random() * 540 + 180}deg)`,
+                    opacity: 0
+                }
             ],
             {
                 duration,
-                easing: "linear"
+                easing: "linear",
+                fill: "forwards"
             }
         );
 
-        window.setTimeout(() => {
-            particle.remove();
-        }, duration);
+        animation.onfinish = () => particle.remove();
+        animation.oncancel = () => particle.remove();
     }
 
     function startParticles() {
-        if (prefersReducedMotion) return;
+        if (prefersReducedMotion || particleTimer || document.hidden) return;
 
-        const interval = isMobileViewport() ? 900 : 350;
+        const interval = isMobileViewport() ? 820 : 260;
         particleTimer = window.setInterval(createParticle, interval);
+    }
+
+    function stopParticles() {
+        if (!particleTimer) return;
+        clearInterval(particleTimer);
+        particleTimer = null;
     }
 
     function launchWelcomeEffect() {
         if (prefersReducedMotion) return;
 
-        const amount = isMobileViewport() ? 16 : 40;
+        const amount = isMobileViewport() ? 18 : 46;
 
         for (let i = 0; i < amount; i++) {
-            window.setTimeout(createParticle, i * 100);
+            window.setTimeout(() => {
+                createParticle({
+                    types: ["dot", "spark", "line", "cap"],
+                    y: Math.random() * 96,
+                    duration: Math.random() * 2800 + 2600
+                });
+            }, i * 55);
         }
     }
 
@@ -467,15 +583,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener("visibilitychange", () => {
         if (document.hidden) {
-            if (particleTimer) {
-                clearInterval(particleTimer);
-                particleTimer = null;
-            }
-
-            if (carouselTimer) {
-                clearInterval(carouselTimer);
-                carouselTimer = null;
-            }
+            stopParticles();
+            stopCarouselTimer();
         } else {
             startParticles();
             startCarouselTimer();
@@ -483,45 +592,49 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* =====================================================
-       CONFETI
+       CONFETI GALA
     ===================================================== */
 
-    function graduationConfetti() {
+    function graduationConfetti(customTotal) {
         if (prefersReducedMotion) return;
 
-        const total = isMobileViewport() ? 60 : 150;
+        const total = customTotal || (isMobileViewport() ? 60 : 150);
+        const colors = ["#30d5c8", "#ffffff", "#c0c0c0", "#f5d483"];
 
         for (let i = 0; i < total; i++) {
-            const confetti = document.createElement("div");
+            const confetti = document.createElement("span");
+            const isCap = Math.random() > .82;
 
-            confetti.className = "confetti";
+            confetti.className = isCap ? "confetti confetti--cap" : "confetti";
             confetti.style.left = `${Math.random() * 100}vw`;
-            confetti.style.background = ["#30d5c8", "#ffffff", "#c0c0c0"][
-                Math.floor(Math.random() * 3)
-            ];
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
             confetti.style.width = `${Math.random() * 10 + 6}px`;
             confetti.style.height = `${Math.random() * 10 + 6}px`;
+            confetti.style.animationDelay = `${Math.random() * .35}s`;
 
             document.body.appendChild(confetti);
 
             window.setTimeout(() => {
                 confetti.remove();
-            }, 4000);
+            }, 4600);
         }
     }
 
     /* =====================================================
-       PRELOAD DE IMÁGENES
+       PRELOAD LIGERO DE IMÁGENES
     ===================================================== */
 
-    [
-        "assets/img/graduacion1.jpg",
-        "assets/img/graduacion2.jpg",
-        "assets/img/graduacion3.jpg",
-        "assets/img/graduacion4.jpg",
-        "assets/img/graduacion5.jpg"
-    ].forEach(src => {
-        const img = new Image();
-        img.src = src;
+    requestIdle(() => {
+        [
+            "assets/img/graduacion1.jpg",
+            "assets/img/graduacion2.jpg",
+            "assets/img/graduacion3.jpg",
+            "assets/img/graduacion4.jpg",
+            "assets/img/graduacion5.jpg"
+        ].forEach(src => {
+            const img = new Image();
+            img.decoding = "async";
+            img.src = src;
+        });
     });
 });

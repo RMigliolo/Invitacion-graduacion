@@ -1320,56 +1320,6 @@ p{
 
 }
 
-.song-request-card{
-
-    padding:24px;
-
-    border-radius:22px;
-
-    background:
-
-    linear-gradient(
-        135deg,
-        rgba(48,213,200,.16),
-        rgba(255,255,255,.07)
-    );
-
-    border:
-
-    1px solid rgba(114,255,245,.28);
-
-    box-shadow:
-
-    inset 0 0 25px rgba(255,255,255,.04);
-
-}
-
-.song-request-card label{
-
-    display:block;
-
-    margin-bottom:14px;
-
-    color:var(--turquoise-light);
-
-    font-family:'Cinzel',serif;
-
-    font-size:1rem;
-
-    font-weight:600;
-
-    letter-spacing:.08em;
-
-    line-height:1.6;
-
-}
-
-.song-request-card input{
-
-    margin-top:0;
-
-}
-
 /* =====================================================
    FOOTER PREMIUM
 ===================================================== */
@@ -2462,15 +2412,6 @@ a,
         padding: 16px 18px;
     }
 
-    .song-request-card {
-        padding: 20px 18px;
-    }
-
-    .song-request-card label {
-        font-size: .92rem;
-        letter-spacing: .05em;
-    }
-
     .audio-control {
         right: 16px;
         bottom: 16px;
@@ -2509,5 +2450,526 @@ a,
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: .01ms !important;
+    }
+}
+
+/* =====================================================
+   FASE 3 - VERSIÓN GALA PREMIUM+
+   - Fondo dinámico mejorado
+   - Partículas avanzadas
+   - Animación de birrete
+   - Transiciones más elegantes
+   - RSVP profesional
+   - Optimización de rendimiento
+===================================================== */
+
+:root {
+    --premium-gold: #f5d483;
+    --premium-gold-soft: rgba(245, 212, 131, .36);
+    --premium-black-glass: rgba(5, 17, 22, .34);
+    --premium-ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+body {
+    isolation: isolate;
+}
+
+.premium-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -7;
+    pointer-events: none;
+    overflow: hidden;
+    contain: layout paint;
+}
+
+.premium-orb,
+.premium-light {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+.premium-orb {
+    width: clamp(220px, 35vw, 520px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    filter: blur(12px);
+    opacity: .42;
+    mix-blend-mode: screen;
+    animation: premiumOrbMove 16s var(--premium-ease) infinite alternate;
+}
+
+.premium-orb-1 {
+    top: 5%;
+    left: -8%;
+    background: radial-gradient(circle, rgba(48,213,200,.45), transparent 65%);
+}
+
+.premium-orb-2 {
+    right: -10%;
+    top: 30%;
+    background: radial-gradient(circle, rgba(245,212,131,.30), transparent 68%);
+    animation-delay: -5s;
+}
+
+.premium-orb-3 {
+    left: 28%;
+    bottom: -18%;
+    background: radial-gradient(circle, rgba(255,255,255,.22), transparent 64%);
+    animation-delay: -10s;
+}
+
+.premium-light {
+    width: 2px;
+    height: 140vh;
+    top: -20vh;
+    opacity: .16;
+    background: linear-gradient(180deg, transparent, rgba(255,255,255,.92), transparent);
+    transform: rotate(21deg);
+    animation: premiumLightSweep 10s ease-in-out infinite;
+}
+
+.premium-light-1 {
+    left: 18%;
+}
+
+.premium-light-2 {
+    right: 22%;
+    animation-delay: -4s;
+}
+
+@keyframes premiumOrbMove {
+    from {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    to {
+        transform: translate3d(9vw, -5vh, 0) scale(1.16);
+    }
+}
+
+@keyframes premiumLightSweep {
+    0%, 100% {
+        transform: translateX(-6vw) rotate(21deg);
+        opacity: .08;
+    }
+    45%, 55% {
+        transform: translateX(6vw) rotate(21deg);
+        opacity: .24;
+    }
+}
+
+body::before {
+    animation: premiumGradientFlow 22s ease-in-out infinite alternate;
+    background-size: 120% 120%;
+}
+
+@keyframes premiumGradientFlow {
+    from {
+        background-position: 0% 0%;
+    }
+    to {
+        background-position: 100% 70%;
+    }
+}
+
+.hero-content,
+.section,
+footer {
+    animation: premiumEntrance .9s var(--premium-ease) both;
+}
+
+.hero-content {
+    animation-delay: .12s;
+}
+
+@keyframes premiumEntrance {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 24px, 0) scale(.985);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+.glass-card,
+.notice-card {
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform .55s var(--premium-ease),
+        border-color .55s var(--premium-ease),
+        box-shadow .55s var(--premium-ease),
+        background .55s var(--premium-ease);
+}
+
+.glass-card::before,
+.notice-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,.18), transparent 36%, rgba(48,213,200,.12));
+    opacity: .62;
+}
+
+.glass-card::after,
+.notice-card::after {
+    content: "";
+    position: absolute;
+    top: -40%;
+    left: -35%;
+    width: 28%;
+    height: 180%;
+    pointer-events: none;
+    transform: rotate(18deg) translateX(-140%);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+    transition: transform .9s var(--premium-ease);
+}
+
+.glass-card:hover,
+.notice-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(114,255,245,.32);
+    box-shadow:
+        0 24px 70px rgba(0,0,0,.24),
+        0 0 46px rgba(48,213,200,.08);
+}
+
+.glass-card:hover::after,
+.notice-card:hover::after {
+    transform: rotate(18deg) translateX(520%);
+}
+
+.graduation-cap {
+    position: absolute;
+    top: clamp(70px, 13vh, 145px);
+    right: clamp(18px, 10vw, 155px);
+    width: clamp(112px, 16vw, 210px);
+    z-index: 3;
+    opacity: .9;
+    filter: drop-shadow(0 24px 45px rgba(0,0,0,.28));
+    transform-origin: 50% 50%;
+    animation: capFloat 5.8s ease-in-out infinite;
+    will-change: transform;
+}
+
+.graduation-cap svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+}
+
+.cap-top {
+    fill: rgba(255,255,255,.88);
+    stroke: rgba(114,255,245,.55);
+    stroke-width: 2;
+}
+
+.cap-band {
+    fill: rgba(48,213,200,.88);
+    stroke: rgba(255,255,255,.38);
+    stroke-width: 1.5;
+}
+
+.cap-tassel {
+    fill: none;
+    stroke: var(--premium-gold);
+    stroke-width: 5;
+    stroke-linecap: round;
+}
+
+.cap-knot,
+.cap-drop {
+    fill: var(--premium-gold);
+}
+
+.graduation-cap.is-launched {
+    animation: capLaunch 1.55s var(--premium-ease), capFloat 5.8s ease-in-out 1.55s infinite;
+}
+
+.graduation-cap.cap-burst {
+    animation: capCelebrate 1.25s var(--premium-ease), capFloat 5.8s ease-in-out 1.25s infinite;
+}
+
+@keyframes capFloat {
+    0%, 100% {
+        transform: translate3d(0, 0, 0) rotate(-6deg);
+    }
+    50% {
+        transform: translate3d(0, -18px, 0) rotate(5deg);
+    }
+}
+
+@keyframes capLaunch {
+    0% {
+        transform: translate3d(26px, 56px, 0) rotate(-28deg) scale(.72);
+        opacity: 0;
+    }
+    62% {
+        transform: translate3d(-16px, -38px, 0) rotate(12deg) scale(1.08);
+        opacity: 1;
+    }
+    100% {
+        transform: translate3d(0, 0, 0) rotate(-6deg) scale(1);
+        opacity: .9;
+    }
+}
+
+@keyframes capCelebrate {
+    0% {
+        transform: translate3d(0, 0, 0) rotate(-6deg) scale(1);
+    }
+    45% {
+        transform: translate3d(-12px, -52px, 0) rotate(18deg) scale(1.1);
+    }
+    100% {
+        transform: translate3d(0, 0, 0) rotate(-6deg) scale(1);
+    }
+}
+
+.particle {
+    will-change: transform, opacity;
+    contain: layout paint style;
+}
+
+.particle--dot {
+    border-radius: 50%;
+}
+
+.particle--spark {
+    border-radius: 999px;
+    transform: rotate(45deg);
+    box-shadow:
+        0 0 12px rgba(255,255,255,.55),
+        0 0 18px rgba(48,213,200,.34);
+}
+
+.particle--line {
+    width: 2px !important;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(48,213,200,.12)) !important;
+}
+
+.particle--cap {
+    width: 20px !important;
+    height: 12px !important;
+    border-radius: 2px !important;
+    background: var(--premium-gold) !important;
+    clip-path: polygon(50% 0, 100% 38%, 50% 76%, 0 38%);
+}
+
+.confetti--cap {
+    border-radius: 2px;
+    clip-path: polygon(50% 0, 100% 38%, 50% 76%, 0 38%);
+}
+
+.rsvp-section {
+    width: min(1040px, 92%);
+}
+
+.rsvp-lead {
+    margin-top: -8px !important;
+    margin-bottom: 10px !important;
+    color: rgba(255,255,255,.82) !important;
+}
+
+.rsvp-status {
+    max-width: 750px;
+    margin: 24px auto 0;
+    padding: 16px 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(114,255,245,.32);
+    color: #ffffff;
+    background:
+        linear-gradient(135deg, rgba(48,213,200,.16), rgba(255,255,255,.07));
+    box-shadow: 0 18px 38px rgba(0,0,0,.16);
+}
+
+.rsvp-status.is-error {
+    border-color: rgba(255, 170, 170, .65);
+    background: linear-gradient(135deg, rgba(255,90,90,.18), rgba(255,255,255,.06));
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.form-field,
+.song-request-card {
+    text-align: left;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-field-full {
+    width: 100%;
+}
+
+.form-field span,
+.song-request-card label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--turquoise-light);
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.form-field small {
+    color: rgba(255,255,255,.62);
+    font-size: .72rem;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+.song-request-card {
+    position: relative;
+    padding: 24px;
+    border: 1px solid rgba(245,212,131,.32);
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 8% 15%, rgba(245,212,131,.18), transparent 34%),
+        linear-gradient(135deg, rgba(255,255,255,.09), rgba(48,213,200,.06));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+}
+
+.song-request-card::before {
+    content: "♫";
+    position: absolute;
+    right: 22px;
+    top: 18px;
+    color: var(--premium-gold);
+    font-size: 2rem;
+    opacity: .72;
+}
+
+.song-request-card p {
+    max-width: 620px;
+    margin: 10px 0 18px !important;
+    color: rgba(255,255,255,.74) !important;
+    font-size: .94rem;
+    line-height: 1.65;
+}
+
+.rsvp-submit {
+    position: relative;
+    overflow: hidden;
+    min-height: 56px;
+}
+
+.rsvp-submit.is-loading {
+    pointer-events: none;
+    opacity: .86;
+}
+
+.rsvp-submit.is-loading::after {
+    content: "";
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.42);
+    border-top-color: #ffffff;
+    animation: rsvpSpin .75s linear infinite;
+}
+
+@keyframes rsvpSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#rsvpForm input,
+#rsvpForm select,
+#rsvpForm textarea {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+}
+
+#rsvpForm input:invalid:focus,
+#rsvpForm select:invalid:focus,
+#rsvpForm textarea:invalid:focus {
+    border-color: rgba(255, 180, 180, .65);
+}
+
+#rsvpForm input.is-invalid,
+#rsvpForm select.is-invalid,
+#rsvpForm textarea.is-invalid {
+    border-color: rgba(255, 170, 170, .72);
+    box-shadow: 0 0 0 4px rgba(255, 90, 90, .08);
+}
+
+@media (max-width: 900px) {
+    .graduation-cap {
+        top: 74px;
+        right: 18px;
+        opacity: .74;
+    }
+}
+
+@media (max-width: 768px) {
+    .premium-light {
+        display: none;
+    }
+
+    .premium-orb {
+        opacity: .32;
+        filter: blur(18px);
+    }
+
+    .graduation-cap {
+        width: clamp(80px, 24vw, 118px);
+        top: 84px;
+        right: 12px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .song-request-card {
+        padding: 22px 18px;
+    }
+
+    .song-request-card::before {
+        font-size: 1.6rem;
+        right: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rsvp-section {
+        width: min(94%, 760px);
+    }
+
+    .form-field span,
+    .song-request-card label {
+        font-size: .76rem;
+        letter-spacing: .08em;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .premium-bg,
+    .graduation-cap {
+        animation: none !important;
+    }
+
+    .premium-orb,
+    .premium-light {
+        animation: none !important;
     }
 }

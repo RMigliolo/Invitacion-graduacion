@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Graduación Universitaria | Gabino Luciano</title>
+    <title>Graduación Universitaria | Gabino Luciano | Gala Premium+</title>
 
-    <meta name="description" content="Invitación de Graduación Universitaria de Gabino Luciano">
+    <meta name="description" content="Invitación Gala Premium+ de Graduación Universitaria de Gabino Luciano">
     <meta name="theme-color" content="#0f2730">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +20,18 @@
 </head>
 
 <body>
+
+    <!-- ========================= -->
+    <!-- FONDO DINÁMICO GALA PREMIUM+ -->
+    <!-- ========================= -->
+
+    <div class="premium-bg" aria-hidden="true">
+        <span class="premium-orb premium-orb-1"></span>
+        <span class="premium-orb premium-orb-2"></span>
+        <span class="premium-orb premium-orb-3"></span>
+        <span class="premium-light premium-light-1"></span>
+        <span class="premium-light premium-light-2"></span>
+    </div>
 
     <!-- ========================= -->
     <!-- PANTALLA DE APERTURA -->
@@ -97,6 +109,16 @@
     <header class="hero">
 
         <div class="hero-glow"></div>
+
+        <div id="graduationCap" class="graduation-cap" aria-hidden="true">
+            <svg viewBox="0 0 220 140" role="img" focusable="false">
+                <path class="cap-top" d="M110 8 206 45 110 82 14 45 110 8Z"></path>
+                <path class="cap-band" d="M59 66c21 18 81 18 102 0v28c-28 22-74 22-102 0V66Z"></path>
+                <path class="cap-tassel" d="M164 55c17 20 16 43 6 63"></path>
+                <circle class="cap-knot" cx="164" cy="55" r="6"></circle>
+                <circle class="cap-drop" cx="170" cy="118" r="7"></circle>
+            </svg>
+        </div>
 
         <div class="hero-content">
 
@@ -529,12 +551,12 @@
     </section>
 
     <!-- ========================= -->
-    <!-- RSVP -->
+    <!-- RSVP PREMIUM+ -->
     <!-- ========================= -->
 
     <section
         id="confirmacion"
-        class="section glass-card">
+        class="section glass-card rsvp-section">
 
         <span class="section-label">
 
@@ -548,35 +570,56 @@
 
         </h2>
 
+        <p class="rsvp-lead">
+
+            Confirma tu asistencia y deja una canción para que la fiesta también lleve tu sello.
+
+        </p>
+
+        <div
+            id="rsvpStatus"
+            class="rsvp-status"
+            role="status"
+            aria-live="polite"
+            hidden>
+        </div>
+
         <form
-            id="rsvpForm">
+            id="rsvpForm"
+            novalidate>
 
-            <input
-                type="text"
-                id="guestName"
-                name="guestName"
-                placeholder="Nombre completo"
-                autocomplete="name"
-                required>
+            <div class="form-grid">
 
-            <select
-                id="attendance"
-                name="attendance"
-                required>
+                <label class="form-field" for="guestName">
+                    <span>Nombre completo</span>
+                    <input
+                        type="text"
+                        id="guestName"
+                        name="guestName"
+                        placeholder="Escribe tu nombre"
+                        autocomplete="name"
+                        required>
+                </label>
 
-                <option value="Sí asistiré">
+                <label class="form-field" for="attendance">
+                    <span>Asistencia</span>
+                    <select
+                        id="attendance"
+                        name="attendance"
+                        required>
 
-                    Sí asistiré
+                        <option value="Sí asistiré">
+                            Sí asistiré
+                        </option>
 
-                </option>
+                        <option value="No podré asistir">
+                            No podré asistir
+                        </option>
 
-                <option value="No podré asistir">
+                    </select>
+                </label>
 
-                    No podré asistir
-
-                </option>
-
-            </select>
+            </div>
 
             <div class="song-request-card">
 
@@ -586,25 +629,33 @@
 
                 </label>
 
+                <p>
+                    Déjame tu recomendación musical para sumarla al ambiente de celebración.
+                </p>
+
                 <input
                     type="text"
                     id="songSuggestion"
                     name="songSuggestion"
-                    placeholder="Escribe el nombre de la canción"
+                    placeholder="Ejemplo: Vivir mi vida - Marc Anthony"
                     autocomplete="off">
 
             </div>
 
-            <textarea
-                id="message"
-                name="message"
-                placeholder="Mensaje para Gabino (opcional)"></textarea>
+            <label class="form-field form-field-full" for="message">
+                <span>Mensaje para Gabino <small>(opcional)</small></span>
+                <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Escribe un mensaje breve para Gabino"></textarea>
+            </label>
 
             <button
                 type="submit"
-                class="btn-primary">
+                id="rsvpSubmitBtn"
+                class="btn-primary rsvp-submit">
 
-                Confirmar por WhatsApp
+                <span>Confirmar por WhatsApp</span>
 
             </button>
 
