@@ -1320,6 +1320,56 @@ p{
 
 }
 
+.song-request-card{
+
+    padding:24px;
+
+    border-radius:22px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(48,213,200,.16),
+        rgba(255,255,255,.07)
+    );
+
+    border:
+
+    1px solid rgba(114,255,245,.28);
+
+    box-shadow:
+
+    inset 0 0 25px rgba(255,255,255,.04);
+
+}
+
+.song-request-card label{
+
+    display:block;
+
+    margin-bottom:14px;
+
+    color:var(--turquoise-light);
+
+    font-family:'Cinzel',serif;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    letter-spacing:.08em;
+
+    line-height:1.6;
+
+}
+
+.song-request-card input{
+
+    margin-top:0;
+
+}
+
 /* =====================================================
    FOOTER PREMIUM
 ===================================================== */
@@ -2206,3 +2256,258 @@ footer h3 {
    PARTE 1 + PARTE 2 + PARTE 3
    ~1,000+ líneas equivalentes de estilo
 ===================================================== */
+
+/* =====================================================
+   FASE 2 - MEJORAS TÉCNICAS, MÓVIL Y COMPATIBILIDAD
+===================================================== */
+
+button,
+a,
+.survey-card {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.audio-control:focus-visible,
+.carousel-arrow:focus-visible,
+.carousel-dot:focus-visible,
+.survey-card:focus-visible,
+#rsvpForm input:focus-visible,
+#rsvpForm select:focus-visible,
+#rsvpForm textarea:focus-visible {
+    outline: 3px solid var(--turquoise-light);
+    outline-offset: 4px;
+}
+
+.intro-screen {
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.intro-screen--hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hero {
+    min-height: 100svh;
+}
+
+.intro-overlay,
+.btn-secondary,
+.audio-control,
+.hero-date div,
+.glass-card,
+.time-box,
+.carousel-arrow,
+.survey-card,
+.dress-card,
+.notice-card,
+#rsvpForm input,
+#rsvpForm select,
+#rsvpForm textarea {
+    -webkit-backdrop-filter: blur(12px);
+}
+
+#rsvpForm select option {
+    color: var(--navy);
+    background: var(--white);
+}
+
+.particle {
+    position: absolute;
+    top: 110%;
+    border-radius: 50%;
+    opacity: .8;
+    box-shadow: 0 0 10px rgba(255,255,255,.5);
+    pointer-events: none;
+}
+
+.carousel-dot {
+    border: none;
+}
+
+/* Fallback para navegadores sin soporte de glassmorphism */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass-card,
+    .notice-card,
+    .time-box,
+    .survey-card,
+    .dress-card,
+    #rsvpForm input,
+    #rsvpForm select,
+    #rsvpForm textarea {
+        background: rgba(10, 30, 36, .92);
+    }
+}
+
+/* Mejoras para tablets y celulares */
+@media (max-width:768px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .intro-content {
+        width: min(92%, 560px);
+        padding: 38px 24px;
+    }
+
+    .intro-name {
+        font-size: clamp(2.6rem, 15vw, 4rem);
+    }
+
+    .intro-message {
+        font-size: .98rem;
+    }
+
+    .hero {
+        padding: 48px 18px;
+    }
+
+    .hero-title {
+        font-size: clamp(3rem, 17vw, 4.6rem);
+    }
+
+    .hero-subtitle,
+    .section-label {
+        font-size: .74rem;
+        letter-spacing: .12em;
+    }
+
+    .hero-date {
+        gap: 12px;
+    }
+
+    .hero-date div {
+        width: 100%;
+        max-width: 320px;
+        padding: 15px 20px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        max-width: 320px;
+        min-height: 52px;
+        padding: 15px 22px;
+        text-align: center;
+    }
+
+    .glass-card,
+    .notice-card {
+        width: min(94%, 760px);
+        padding: 34px 22px;
+        border-radius: 24px;
+    }
+
+    .countdown-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .time-box {
+        padding: 24px 12px;
+    }
+
+    .time-box span {
+        font-size: clamp(2rem, 12vw, 2.7rem);
+    }
+
+    .carousel {
+        border-radius: 22px;
+    }
+
+    .slide img {
+        height: clamp(260px, 65vw, 390px);
+        border-radius: 22px;
+    }
+
+    .slide::after {
+        border-radius: 22px;
+    }
+
+    .carousel-arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 1.15rem;
+    }
+
+    .carousel-arrow.left {
+        left: 10px;
+    }
+
+    .carousel-arrow.right {
+        right: 10px;
+    }
+
+    .survey-card,
+    .dress-card {
+        padding: 30px 18px;
+    }
+
+    .map-container iframe {
+        height: 340px;
+    }
+
+    #rsvpForm {
+        margin-top: 32px;
+    }
+
+    #rsvpForm input,
+    #rsvpForm select,
+    #rsvpForm textarea {
+        font-size: 16px;
+        padding: 16px 18px;
+    }
+
+    .song-request-card {
+        padding: 20px 18px;
+    }
+
+    .song-request-card label {
+        font-size: .92rem;
+        letter-spacing: .05em;
+    }
+
+    .audio-control {
+        right: 16px;
+        bottom: 16px;
+        width: 54px;
+        height: 54px;
+    }
+}
+
+@media (max-width:360px) {
+
+    .countdown-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-title {
+        font-size: 2.65rem;
+    }
+
+    .section h2 {
+        font-size: 1.75rem;
+    }
+
+    .glass-card,
+    .notice-card {
+        padding: 28px 18px;
+    }
+}
+
+/* Accesibilidad: reduce animaciones si el usuario lo tiene configurado */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}

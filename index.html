@@ -8,6 +8,7 @@
     <title>Graduación Universitaria | Gabino Luciano</title>
 
     <meta name="description" content="Invitación de Graduación Universitaria de Gabino Luciano">
+    <meta name="theme-color" content="#0f2730">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,7 +48,7 @@
 
             </p>
 
-            <button id="openInvitationBtn" class="btn-primary">
+            <button id="openInvitationBtn" class="btn-primary" type="button">
 
                 Abrir Invitación
 
@@ -74,7 +75,10 @@
 
     <button
         id="audioBtn"
-        class="audio-control">
+        class="audio-control"
+        type="button"
+        aria-label="Activar o pausar música"
+        aria-pressed="false">
 
         ♪
 
@@ -205,7 +209,7 @@
 
         </h2>
 
-        <div class="countdown-grid">
+        <div class="countdown-grid" aria-live="polite">
 
             <div class="time-box">
                 <span id="days">00</span>
@@ -253,7 +257,9 @@
 
             <button
                 class="carousel-arrow left"
-                id="prevSlide">
+                id="prevSlide"
+                type="button"
+                aria-label="Imagen anterior">
 
                 ❮
 
@@ -264,30 +270,32 @@
                 id="slides">
 
                 <div class="slide">
-                    <img src="assets/img/graduacion1.jpg" alt="">
+                    <img src="assets/img/graduacion1.jpg" alt="Foto de graduación de Gabino Luciano 1" loading="lazy" decoding="async">
                 </div>
 
                 <div class="slide">
-                    <img src="assets/img/graduacion2.jpg" alt="">
+                    <img src="assets/img/graduacion2.jpg" alt="Foto de graduación de Gabino Luciano 2" loading="lazy" decoding="async">
                 </div>
 
                 <div class="slide">
-                    <img src="assets/img/graduacion3.jpg" alt="">
+                    <img src="assets/img/graduacion3.jpg" alt="Foto de graduación de Gabino Luciano 3" loading="lazy" decoding="async">
                 </div>
 
                 <div class="slide">
-                    <img src="assets/img/graduacion4.jpg" alt="">
+                    <img src="assets/img/graduacion4.jpg" alt="Foto de graduación de Gabino Luciano 4" loading="lazy" decoding="async">
                 </div>
 
                 <div class="slide">
-                    <img src="assets/img/graduacion5.jpg" alt="">
+                    <img src="assets/img/graduacion5.jpg" alt="Foto de graduación de Gabino Luciano 5" loading="lazy" decoding="async">
                 </div>
 
             </div>
 
             <button
                 class="carousel-arrow right"
-                id="nextSlide">
+                id="nextSlide"
+                type="button"
+                aria-label="Imagen siguiente">
 
                 ❯
 
@@ -499,8 +507,10 @@
         <div class="map-container">
 
             <iframe
+                title="Mapa de ubicación del evento"
                 loading="lazy"
                 allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
                 src="https://www.google.com/maps?q=Cerrada+Chabacano+4+San+Mateo+Xoloc+Tepotzotlan&output=embed">
             </iframe>
 
@@ -508,6 +518,7 @@
 
         <a
             target="_blank"
+            rel="noopener noreferrer"
             class="btn-primary"
             href="https://www.google.com/maps/search/?api=1&query=Cerrada+Chabacano+4+San+Mateo+Xoloc+Tepotzotlan">
 
@@ -543,11 +554,14 @@
             <input
                 type="text"
                 id="guestName"
+                name="guestName"
                 placeholder="Nombre completo"
+                autocomplete="name"
                 required>
 
             <select
                 id="attendance"
+                name="attendance"
                 required>
 
                 <option value="Sí asistiré">
@@ -564,10 +578,27 @@
 
             </select>
 
+            <div class="song-request-card">
+
+                <label for="songSuggestion">
+
+                    Canción que no debe faltar para la fiesta!
+
+                </label>
+
+                <input
+                    type="text"
+                    id="songSuggestion"
+                    name="songSuggestion"
+                    placeholder="Escribe el nombre de la canción"
+                    autocomplete="off">
+
+            </div>
+
             <textarea
                 id="message"
-                placeholder="Mensaje para Gabino (opcional)">
-            </textarea>
+                name="message"
+                placeholder="Mensaje para Gabino (opcional)"></textarea>
 
             <button
                 type="submit"
@@ -605,7 +636,7 @@
 
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 
 </body>
 </html>
