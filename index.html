@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Graduación Universitaria | Gabino Luciano</title>
+
+    <meta name="description" content="Invitación de Graduación Universitaria de Gabino Luciano">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- ========================= -->
+    <!-- PANTALLA DE APERTURA -->
+    <!-- ========================= -->
+
+    <section id="introScreen" class="intro-screen">
+
+        <div class="intro-overlay"></div>
+
+        <div class="intro-content">
+
+            <span class="intro-badge">
+                Graduación Universitaria
+            </span>
+
+            <h1 class="intro-name">
+                Gabino Luciano
+            </h1>
+
+            <p class="intro-message">
+
+                Hoy celebro el cierre de una etapa llena de aprendizaje,
+                esfuerzo y perseverancia.
+
+                Me encantaría compartir contigo este momento tan especial.
+
+            </p>
+
+            <button id="openInvitationBtn" class="btn-primary">
+
+                Abrir Invitación
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- MUSICA -->
+    <!-- ========================= -->
+
+    <audio
+        id="bgMusic"
+        preload="auto"
+        loop>
+
+        <source
+            src="assets/audio/graduacion.mp3"
+            type="audio/mpeg">
+
+    </audio>
+
+    <button
+        id="audioBtn"
+        class="audio-control">
+
+        ♪
+
+    </button>
+
+    <!-- ========================= -->
+    <!-- PARTICULAS -->
+    <!-- ========================= -->
+
+    <div id="particles"></div>
+
+    <!-- ========================= -->
+    <!-- HERO -->
+    <!-- ========================= -->
+
+    <header class="hero">
+
+        <div class="hero-glow"></div>
+
+        <div class="hero-content">
+
+            <span class="hero-subtitle">
+
+                Fiesta de Graduación Universitaria
+
+            </span>
+
+            <h1 class="hero-title">
+
+                Gabino
+                <br>
+                Luciano
+
+            </h1>
+
+            <div class="divider"></div>
+
+            <p class="hero-description">
+
+                Después de años de dedicación,
+                sacrificio y aprendizaje,
+                ha llegado el momento de celebrar.
+
+                Tu presencia hará aún más especial este logro.
+
+            </p>
+
+            <div class="hero-date">
+
+                <div>
+
+                    29 Agosto 2026
+
+                </div>
+
+                <div>
+
+                    14:45 hrs
+
+                </div>
+
+            </div>
+
+            <div class="hero-buttons">
+
+                <a href="#confirmacion" class="btn-primary">
+
+                    Confirmar Asistencia
+
+                </a>
+
+                <a href="#ubicacion" class="btn-secondary">
+
+                    Ver Ubicación
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- ========================= -->
+    <!-- BIENVENIDA -->
+    <!-- ========================= -->
+
+    <section class="section glass-card">
+
+        <span class="section-label">
+
+            Bienvenidos
+
+        </span>
+
+        <h2>
+
+            Gracias por ser parte de mi historia
+
+        </h2>
+
+        <p>
+
+            Hoy celebro una meta alcanzada.
+
+            Gracias por acompañarme,
+            apoyarme y formar parte de este camino.
+
+        </p>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- CUENTA REGRESIVA -->
+    <!-- ========================= -->
+
+    <section class="section glass-card">
+
+        <span class="section-label">
+
+            Cuenta Regresiva
+
+        </span>
+
+        <h2>
+
+            Faltan
+
+        </h2>
+
+        <div class="countdown-grid">
+
+            <div class="time-box">
+                <span id="days">00</span>
+                <small>Días</small>
+            </div>
+
+            <div class="time-box">
+                <span id="hours">00</span>
+                <small>Horas</small>
+            </div>
+
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <small>Minutos</small>
+            </div>
+
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <small>Segundos</small>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- CARRUSEL -->
+    <!-- ========================= -->
+
+    <section class="section glass-card">
+
+        <span class="section-label">
+
+            Galería
+
+        </span>
+
+        <h2>
+
+            Un logro que merece celebrarse
+
+        </h2>
+
+        <div class="carousel">
+
+            <button
+                class="carousel-arrow left"
+                id="prevSlide">
+
+                ❮
+
+            </button>
+
+            <div
+                class="slides"
+                id="slides">
+
+                <div class="slide">
+                    <img src="assets/img/graduacion1.jpg" alt="">
+                </div>
+
+                <div class="slide">
+                    <img src="assets/img/graduacion2.jpg" alt="">
+                </div>
+
+                <div class="slide">
+                    <img src="assets/img/graduacion3.jpg" alt="">
+                </div>
+
+                <div class="slide">
+                    <img src="assets/img/graduacion4.jpg" alt="">
+                </div>
+
+                <div class="slide">
+                    <img src="assets/img/graduacion5.jpg" alt="">
+                </div>
+
+            </div>
+
+            <button
+                class="carousel-arrow right"
+                id="nextSlide">
+
+                ❯
+
+            </button>
+
+        </div>
+
+        <div id="carouselDots"></div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- COMO SOY -->
+    <!-- ========================= -->
+
+    <section class="section glass-card">
+
+        <span class="section-label">
+
+            Dinámica
+
+        </span>
+
+        <h2>
+
+            ¿Cómo soy?
+
+        </h2>
+
+        <p>
+
+            Elige la opción que mejor me describa.
+
+        </p>
+
+        <div class="survey-grid">
+
+            <div
+                class="survey-card"
+                data-option="Divertido">
+
+                😄
+
+                <span>
+
+                    Divertido
+
+                </span>
+
+            </div>
+
+            <div
+                class="survey-card"
+                data-option="Fiestero">
+
+                🎉
+
+                <span>
+
+                    Fiestero
+
+                </span>
+
+            </div>
+
+            <div
+                class="survey-card"
+                data-option="Aburrido">
+
+                😴
+
+                <span>
+
+                    Aburrido
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- VESTIMENTA -->
+    <!-- ========================= -->
+
+    <section class="section glass-card">
+
+        <span class="section-label">
+
+            Dress Code
+
+        </span>
+
+        <h2>
+
+            Código de Vestimenta
+
+        </h2>
+
+        <div class="dress-grid">
+
+            <div class="dress-card">
+
+                <div class="dress-icon">
+
+                    👔
+
+                </div>
+
+                <h3>
+
+                    Hombres
+
+                </h3>
+
+                <p>
+
+                    Casual
+
+                </p>
+
+            </div>
+
+            <div class="dress-card">
+
+                <div class="dress-icon">
+
+                    👗
+
+                </div>
+
+                <h3>
+
+                    Mujeres
+
+                </h3>
+
+                <p>
+
+                    Vestido
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- AVISO -->
+    <!-- ========================= -->
+
+    <section class="section notice-card">
+
+        <h2>
+
+            Aviso Importante
+
+        </h2>
+
+        <p>
+
+            Esta invitación es personal,
+            no acompañante.
+
+            Gracias por su comprensión.
+
+        </p>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- UBICACION -->
+    <!-- ========================= -->
+
+    <section
+        id="ubicacion"
+        class="section glass-card">
+
+        <span class="section-label">
+
+            Ubicación
+
+        </span>
+
+        <h2>
+
+            Te espero aquí
+
+        </h2>
+
+        <p>
+
+            Cerrada Chabacano No. 4
+
+            <br>
+
+            San Mateo Xoloc
+
+            <br>
+
+            Tepotzotlán, Estado de México
+
+        </p>
+
+        <div class="map-container">
+
+            <iframe
+                loading="lazy"
+                allowfullscreen
+                src="https://www.google.com/maps?q=Cerrada+Chabacano+4+San+Mateo+Xoloc+Tepotzotlan&output=embed">
+            </iframe>
+
+        </div>
+
+        <a
+            target="_blank"
+            class="btn-primary"
+            href="https://www.google.com/maps/search/?api=1&query=Cerrada+Chabacano+4+San+Mateo+Xoloc+Tepotzotlan">
+
+            Abrir Google Maps
+
+        </a>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- RSVP -->
+    <!-- ========================= -->
+
+    <section
+        id="confirmacion"
+        class="section glass-card">
+
+        <span class="section-label">
+
+            RSVP
+
+        </span>
+
+        <h2>
+
+            Confirmación de Asistencia
+
+        </h2>
+
+        <form
+            id="rsvpForm">
+
+            <input
+                type="text"
+                id="guestName"
+                placeholder="Nombre completo"
+                required>
+
+            <select
+                id="attendance"
+                required>
+
+                <option value="Sí asistiré">
+
+                    Sí asistiré
+
+                </option>
+
+                <option value="No podré asistir">
+
+                    No podré asistir
+
+                </option>
+
+            </select>
+
+            <textarea
+                id="message"
+                placeholder="Mensaje para Gabino (opcional)">
+            </textarea>
+
+            <button
+                type="submit"
+                class="btn-primary">
+
+                Confirmar por WhatsApp
+
+            </button>
+
+        </form>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- FOOTER -->
+    <!-- ========================= -->
+
+    <footer>
+
+        <h3>
+
+            Te espero para celebrar este gran logro
+
+        </h3>
+
+        <p>
+
+            Graduación Universitaria
+            ·
+            Gabino Luciano
+            ·
+            2026
+
+        </p>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

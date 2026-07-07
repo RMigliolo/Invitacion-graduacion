@@ -1,0 +1,2208 @@
+/* =====================================================
+   GRADUACIÓN GABINO LUCIANO 2026
+   STYLE.CSS - PARTE 1
+   Tema: Gala Universitaria Premium
+   Paleta: Plata + Blanco + Turquesa
+===================================================== */
+
+/* =====================================================
+   VARIABLES GLOBALES
+===================================================== */
+
+:root{
+
+    --white:#ffffff;
+    --white-soft:#f8fbfc;
+
+    --silver:#c0c0c0;
+    --silver-light:#e5e5e5;
+    --silver-dark:#8f8f8f;
+
+    --turquoise:#30d5c8;
+    --turquoise-light:#72fff5;
+    --turquoise-dark:#008b8b;
+
+    --navy:#16313b;
+
+    --glass:
+        rgba(255,255,255,.18);
+
+    --glass-border:
+        rgba(255,255,255,.35);
+
+    --shadow-soft:
+        0 10px 40px rgba(0,0,0,.12);
+
+    --shadow-medium:
+        0 20px 60px rgba(0,0,0,.16);
+
+    --shadow-strong:
+        0 35px 80px rgba(0,0,0,.25);
+
+    --transition:
+        all .35s ease;
+
+    --radius:
+        24px;
+
+}
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Montserrat',sans-serif;
+
+    background:#f5f8f9;
+
+    color:#ffffff;
+
+    overflow-x:hidden;
+
+    min-height:100vh;
+
+    position:relative;
+
+}
+
+/* =====================================================
+   FONDO PREMIUM ANIMADO
+===================================================== */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-10;
+
+    background:
+
+    radial-gradient(
+        circle at 15% 20%,
+        rgba(48,213,200,.28),
+        transparent 25%
+    ),
+
+    radial-gradient(
+        circle at 80% 15%,
+        rgba(255,255,255,.18),
+        transparent 25%
+    ),
+
+    radial-gradient(
+        circle at 50% 80%,
+        rgba(192,192,192,.25),
+        transparent 30%
+    ),
+
+    linear-gradient(
+        135deg,
+        #07171b,
+        #0f2730,
+        #143842,
+        #0b2129
+    );
+
+}
+
+/* =====================================================
+   EFECTO AURORA
+===================================================== */
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-9;
+
+    background:
+
+    radial-gradient(
+        circle at 20% 30%,
+        rgba(48,213,200,.15),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at 70% 60%,
+        rgba(114,255,245,.12),
+        transparent 40%
+    );
+
+    animation:
+        auroraMove 18s ease infinite;
+
+}
+
+@keyframes auroraMove{
+
+    0%{
+        transform:translateX(0);
+    }
+
+    50%{
+        transform:translateX(-80px);
+    }
+
+    100%{
+        transform:translateX(0);
+    }
+
+}
+
+/* =====================================================
+   CONTENEDOR DE PARTICULAS
+===================================================== */
+
+#particles{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-8;
+
+}
+
+/* =====================================================
+   TIPOGRAFIAS
+===================================================== */
+
+h1,h2,h3{
+
+    font-family:'Cinzel',serif;
+
+    font-weight:600;
+
+    letter-spacing:.06em;
+
+}
+
+.hero-title{
+
+    font-family:'Playfair Display',serif;
+
+}
+
+p{
+
+    line-height:1.9;
+
+}
+
+/* =====================================================
+   INTRO SCREEN
+===================================================== */
+
+.intro-screen{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:9999;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+}
+
+.intro-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(6,18,22,.95),
+        rgba(16,40,48,.90)
+    );
+
+    backdrop-filter:blur(14px);
+
+}
+
+.intro-content{
+
+    position:relative;
+
+    z-index:5;
+
+    width:min(90%,700px);
+
+    text-align:center;
+
+    padding:60px;
+
+}
+
+.intro-badge{
+
+    display:inline-block;
+
+    padding:12px 26px;
+
+    border-radius:999px;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    background:rgba(255,255,255,.08);
+
+    color:var(--turquoise-light);
+
+    letter-spacing:.15em;
+
+    text-transform:uppercase;
+
+    font-size:.8rem;
+
+}
+
+.intro-name{
+
+    font-size:clamp(3rem,8vw,6rem);
+
+    margin-top:30px;
+
+    margin-bottom:20px;
+
+    color:white;
+
+    text-shadow:
+        0 0 25px rgba(48,213,200,.6);
+
+}
+
+.intro-message{
+
+    max-width:600px;
+
+    margin:auto;
+
+    color:#e8e8e8;
+
+    font-size:1.05rem;
+
+}
+
+.intro-content{
+
+    animation:
+        introFade 1.5s ease;
+}
+
+@keyframes introFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(60px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =====================================================
+   BOTONES PREMIUM
+===================================================== */
+
+.btn-primary{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    padding:16px 34px;
+
+    border:none;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    letter-spacing:.08em;
+
+    color:white;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        var(--turquoise),
+        var(--turquoise-dark)
+    );
+
+    box-shadow:
+
+    0 15px 35px rgba(48,213,200,.25);
+
+    transition:var(--transition);
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+
+    0 25px 50px rgba(48,213,200,.35);
+
+}
+
+.btn-secondary{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:16px 34px;
+
+    border-radius:999px;
+
+    text-decoration:none;
+
+    color:white;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(10px);
+
+    transition:var(--transition);
+
+}
+
+.btn-secondary:hover{
+
+    background:rgba(255,255,255,.15);
+
+}
+
+/* =====================================================
+   AUDIO BUTTON
+===================================================== */
+
+.audio-control{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    width:65px;
+
+    height:65px;
+
+    border:none;
+
+    border-radius:50%;
+
+    z-index:999;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:1.4rem;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        var(--turquoise),
+        var(--turquoise-dark)
+    );
+
+    box-shadow:
+        0 15px 35px rgba(48,213,200,.3);
+
+    transition:var(--transition);
+
+}
+
+.audio-control:hover{
+
+    transform:scale(1.08);
+
+}
+
+/* =====================================================
+   HERO PRINCIPAL
+===================================================== */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    position:relative;
+
+    padding:80px 20px;
+
+}
+
+.hero-glow{
+
+    position:absolute;
+
+    width:600px;
+
+    height:600px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(
+        circle,
+        rgba(48,213,200,.22),
+        transparent 70%
+    );
+
+    filter:blur(40px);
+
+    animation:
+        glowPulse 8s ease infinite;
+
+}
+
+@keyframes glowPulse{
+
+    0%,100%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.15);
+
+    }
+
+}
+
+.hero-content{
+
+    max-width:950px;
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+.hero-subtitle{
+
+    display:block;
+
+    color:var(--turquoise-light);
+
+    letter-spacing:.18em;
+
+    text-transform:uppercase;
+
+    margin-bottom:20px;
+
+}
+
+.hero-title{
+
+    font-size:clamp(4rem,10vw,8rem);
+
+    line-height:.95;
+
+    color:white;
+
+    margin-bottom:20px;
+
+}
+
+.divider{
+
+    width:140px;
+
+    height:2px;
+
+    margin:30px auto;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        transparent,
+        var(--turquoise),
+        transparent
+    );
+
+}
+
+.hero-description{
+
+    max-width:720px;
+
+    margin:auto;
+
+    color:#f2f2f2;
+
+    font-size:1.1rem;
+
+}
+
+.hero-date{
+
+    margin-top:40px;
+
+    display:flex;
+
+    gap:20px;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+}
+
+.hero-date div{
+
+    padding:18px 30px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    backdrop-filter:blur(12px);
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+    margin-top:40px;
+
+}
+
+/* =====================================================
+   GLASS CARDS
+===================================================== */
+
+.glass-card{
+
+    width:min(1200px,92%);
+
+    margin:40px auto;
+
+    padding:60px;
+
+    border-radius:32px;
+
+    background:
+
+    rgba(255,255,255,.08);
+
+    border:
+
+    1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:var(--shadow-soft);
+
+}
+
+.section-label{
+
+    display:block;
+
+    color:var(--turquoise-light);
+
+    letter-spacing:.18em;
+
+    text-transform:uppercase;
+
+    margin-bottom:16px;
+
+}
+
+/* =====================================================
+   GRADUACIÓN GABINO LUCIANO 2026
+   STYLE.CSS - PARTE 2
+   Componentes:
+   - Cuenta regresiva
+   - Carrusel Premium
+   - Encuesta ¿Cómo Soy?
+   - Dress Code
+   - Aviso Importante
+   - Ubicación
+   - RSVP
+   - Footer Premium
+===================================================== */
+
+/* =====================================================
+   SECCIONES GENERALES
+===================================================== */
+
+.section{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.section h2{
+
+    font-size:clamp(2rem,4vw,3rem);
+
+    margin-bottom:25px;
+
+    color:#ffffff;
+
+}
+
+.section p{
+
+    color:rgba(255,255,255,.90);
+
+    max-width:900px;
+
+    margin:auto;
+
+}
+
+/* =====================================================
+   CUENTA REGRESIVA
+===================================================== */
+
+.countdown-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:25px;
+
+    margin-top:50px;
+
+}
+
+.time-box{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:35px 20px;
+
+    border-radius:24px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.12),
+        rgba(255,255,255,.05)
+    );
+
+    border:
+
+    1px solid rgba(255,255,255,.18);
+
+    backdrop-filter:blur(18px);
+
+    transition:all .4s ease;
+
+}
+
+.time-box:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+
+    0 25px 50px rgba(48,213,200,.18);
+
+}
+
+.time-box span{
+
+    display:block;
+
+    font-size:3rem;
+
+    font-weight:700;
+
+    color:var(--turquoise-light);
+
+    margin-bottom:10px;
+
+}
+
+.time-box small{
+
+    font-size:.9rem;
+
+    letter-spacing:.15em;
+
+    text-transform:uppercase;
+
+    color:#ffffff;
+
+}
+
+/* =====================================================
+   CARRUSEL PREMIUM
+===================================================== */
+
+.carousel{
+
+    position:relative;
+
+    width:100%;
+
+    margin-top:50px;
+
+    overflow:hidden;
+
+    border-radius:30px;
+
+}
+
+.slides{
+
+    display:flex;
+
+    transition:
+        transform .6s ease;
+
+}
+
+.slide{
+
+    min-width:100%;
+
+    position:relative;
+
+}
+
+.slide img{
+
+    width:100%;
+
+    height:650px;
+
+    object-fit:cover;
+
+    display:block;
+
+    border-radius:28px;
+
+}
+
+.slide::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:28px;
+
+    background:
+
+    linear-gradient(
+        to top,
+        rgba(0,0,0,.35),
+        transparent
+    );
+
+}
+
+.carousel-arrow{
+
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:60px;
+
+    height:60px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    z-index:20;
+
+    font-size:1.6rem;
+
+    color:white;
+
+    background:
+
+    rgba(255,255,255,.12);
+
+    backdrop-filter:blur(10px);
+
+    transition:all .3s ease;
+
+}
+
+.carousel-arrow:hover{
+
+    background:
+
+    rgba(48,213,200,.55);
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+
+}
+
+.carousel-arrow.left{
+
+    left:20px;
+
+}
+
+.carousel-arrow.right{
+
+    right:20px;
+
+}
+
+#carouselDots{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-top:25px;
+
+}
+
+.carousel-dot{
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    background:
+
+    rgba(255,255,255,.35);
+
+    transition:.3s;
+
+}
+
+.carousel-dot.active{
+
+    width:35px;
+
+    border-radius:999px;
+
+    background:
+
+    var(--turquoise);
+
+}
+
+/* =====================================================
+   ENCUESTA
+===================================================== */
+
+.survey-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:25px;
+
+    margin-top:50px;
+
+}
+
+.survey-card{
+
+    padding:40px 25px;
+
+    cursor:pointer;
+
+    border-radius:24px;
+
+    border:
+
+    1px solid rgba(255,255,255,.18);
+
+    background:
+
+    rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+    transition:
+        all .35s ease;
+
+}
+
+.survey-card:hover{
+
+    transform:
+        translateY(-10px);
+
+    border-color:
+
+    rgba(48,213,200,.6);
+
+    box-shadow:
+
+    0 20px 50px rgba(48,213,200,.18);
+
+}
+
+.survey-card.selected{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(48,213,200,.35),
+        rgba(0,139,139,.35)
+    );
+
+    border-color:
+
+    var(--turquoise-light);
+
+}
+
+.survey-card{
+
+    font-size:3rem;
+
+}
+
+.survey-card span{
+
+    display:block;
+
+    margin-top:20px;
+
+    font-size:1.1rem;
+
+    color:white;
+
+}
+
+/* =====================================================
+   DRESS CODE
+===================================================== */
+
+.dress-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:30px;
+
+    margin-top:50px;
+
+}
+
+.dress-card{
+
+    padding:45px 30px;
+
+    border-radius:28px;
+
+    text-align:center;
+
+    background:
+
+    rgba(255,255,255,.08);
+
+    border:
+
+    1px solid rgba(255,255,255,.15);
+
+    transition:
+        all .35s ease;
+
+}
+
+.dress-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+
+    0 25px 60px rgba(48,213,200,.18);
+
+}
+
+.dress-icon{
+
+    font-size:4rem;
+
+    margin-bottom:20px;
+
+}
+
+.dress-card h3{
+
+    margin-bottom:10px;
+
+}
+
+.dress-card p{
+
+    color:
+
+    var(--turquoise-light);
+
+    font-weight:600;
+
+}
+
+/* =====================================================
+   AVISO IMPORTANTE
+===================================================== */
+
+.notice-card{
+
+    width:min(1000px,92%);
+
+    margin:40px auto;
+
+    padding:55px;
+
+    text-align:center;
+
+    border-radius:30px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(192,192,192,.12),
+        rgba(48,213,200,.12)
+    );
+
+    border:
+
+    1px solid rgba(255,255,255,.18);
+
+    backdrop-filter:blur(20px);
+
+}
+
+.notice-card h2{
+
+    color:
+
+    var(--turquoise-light);
+
+    margin-bottom:20px;
+
+}
+
+.notice-card p{
+
+    font-size:1.15rem;
+
+}
+
+/* =====================================================
+   UBICACION
+===================================================== */
+
+.map-container{
+
+    margin-top:40px;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    box-shadow:
+
+    0 20px 50px rgba(0,0,0,.20);
+
+}
+
+.map-container iframe{
+
+    width:100%;
+
+    height:450px;
+
+    border:none;
+
+    display:block;
+
+}
+
+#ubicacion .btn-primary{
+
+    margin-top:30px;
+
+}
+
+/* =====================================================
+   RSVP
+===================================================== */
+
+#rsvpForm{
+
+    max-width:750px;
+
+    margin:auto;
+
+    margin-top:45px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+#rsvpForm input,
+#rsvpForm select,
+#rsvpForm textarea{
+
+    width:100%;
+
+    padding:18px 22px;
+
+    border:none;
+
+    border-radius:18px;
+
+    outline:none;
+
+    color:white;
+
+    font-size:1rem;
+
+    background:
+
+    rgba(255,255,255,.08);
+
+    border:
+
+    1px solid rgba(255,255,255,.18);
+
+    backdrop-filter:blur(10px);
+
+}
+
+#rsvpForm input::placeholder,
+#rsvpForm textarea::placeholder{
+
+    color:
+
+    rgba(255,255,255,.65);
+
+}
+
+#rsvpForm textarea{
+
+    resize:none;
+
+    min-height:160px;
+
+}
+
+#rsvpForm input:focus,
+#rsvpForm select:focus,
+#rsvpForm textarea:focus{
+
+    border-color:
+
+    var(--turquoise);
+
+    box-shadow:
+
+    0 0 20px rgba(48,213,200,.20);
+
+}
+
+#rsvpForm button{
+
+    margin-top:10px;
+
+}
+
+/* =====================================================
+   FOOTER PREMIUM
+===================================================== */
+
+footer{
+
+    margin-top:80px;
+
+    padding:80px 20px;
+
+    text-align:center;
+
+    position:relative;
+
+}
+
+footer::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:250px;
+
+    height:1px;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        transparent,
+        var(--turquoise),
+        transparent
+    );
+
+}
+
+footer h3{
+
+    font-size:2rem;
+
+    margin-bottom:15px;
+
+    color:white;
+
+}
+
+footer p{
+
+    color:
+
+    rgba(255,255,255,.75);
+
+    letter-spacing:.08em;
+
+}
+
+/* =====================================================
+   EFECTOS DE HOVER GLOBALES
+===================================================== */
+
+.glass-card:hover{
+
+    transform:translateY(-5px);
+
+    transition:.4s;
+
+    box-shadow:
+
+    0 30px 70px rgba(48,213,200,.10);
+
+}
+
+/* =====================================================
+   GRADUACIÓN GABINO LUCIANO 2026
+   STYLE.CSS - PARTE 3
+   Responsive + Animaciones Premium
+   Versión Gala Universitaria
+===================================================== */
+
+/* =====================================================
+   ANIMACIONES GENERALES
+===================================================== */
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity:0;
+        transform:
+            translateY(60px);
+
+    }
+
+    to {
+
+        opacity:1;
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+@keyframes fadeLeft {
+
+    from {
+
+        opacity:0;
+        transform:
+            translateX(-60px);
+
+    }
+
+    to {
+
+        opacity:1;
+        transform:
+            translateX(0);
+
+    }
+
+}
+
+@keyframes fadeRight {
+
+    from {
+
+        opacity:0;
+        transform:
+            translateX(60px);
+
+    }
+
+    to {
+
+        opacity:1;
+        transform:
+            translateX(0);
+
+    }
+
+}
+
+@keyframes zoomIn {
+
+    from {
+
+        opacity:0;
+        transform:
+            scale(.85);
+
+    }
+
+    to {
+
+        opacity:1;
+        transform:
+            scale(1);
+
+    }
+
+}
+
+@keyframes floating {
+
+    0% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-15px);
+
+    }
+
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+@keyframes pulseGlow {
+
+    0% {
+
+        box-shadow:
+            0 0 0 rgba(48,213,200,.2);
+
+    }
+
+    50% {
+
+        box-shadow:
+            0 0 40px rgba(48,213,200,.45);
+
+    }
+
+    100% {
+
+        box-shadow:
+            0 0 0 rgba(48,213,200,.2);
+
+    }
+
+}
+
+/* =====================================================
+   EFECTO SHIMMER PLATA
+===================================================== */
+
+@keyframes shimmer {
+
+    0% {
+
+        transform:
+            translateX(-150%);
+
+    }
+
+    100% {
+
+        transform:
+            translateX(250%);
+
+    }
+
+}
+
+.glass-card {
+
+    position:relative;
+
+}
+
+.glass-card::after {
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:30%;
+    height:100%;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.18),
+            transparent
+        );
+
+    transform:
+        translateX(-150%);
+
+    pointer-events:none;
+
+}
+
+.glass-card:hover::after {
+
+    animation:
+        shimmer 1.8s ease;
+
+}
+
+/* =====================================================
+   HERO ANIMATIONS
+===================================================== */
+
+.hero-subtitle {
+
+    animation:
+        fadeUp 1s ease;
+
+}
+
+.hero-title {
+
+    animation:
+        zoomIn 1.3s ease;
+
+}
+
+.hero-description {
+
+    animation:
+        fadeUp 1.6s ease;
+
+}
+
+.hero-date {
+
+    animation:
+        fadeUp 1.9s ease;
+
+}
+
+.hero-buttons {
+
+    animation:
+        fadeUp 2.2s ease;
+
+}
+
+/* =====================================================
+   TITULOS DE SECCION
+===================================================== */
+
+.section h2 {
+
+    position:relative;
+
+}
+
+.section h2::after {
+
+    content:"";
+
+    display:block;
+
+    width:80px;
+    height:3px;
+
+    margin:
+
+        15px auto 0;
+
+    border-radius:999px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--turquoise),
+            transparent
+        );
+
+}
+
+/* =====================================================
+   EFECTO HOVER PREMIUM
+===================================================== */
+
+.glass-card {
+
+    transition:
+
+        transform .45s ease,
+        box-shadow .45s ease;
+
+}
+
+.glass-card:hover {
+
+    transform:
+
+        translateY(-10px);
+
+    box-shadow:
+
+        0 35px 80px
+        rgba(48,213,200,.12);
+
+}
+
+/* =====================================================
+   BOTONES PREMIUM
+===================================================== */
+
+.btn-primary {
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.btn-primary::before {
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:100%;
+    height:100%;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.3),
+            transparent
+        );
+
+}
+
+.btn-primary:hover::before {
+
+    animation:
+        shimmer 1.2s ease;
+
+}
+
+.btn-primary:hover {
+
+    animation:
+        pulseGlow 1.4s infinite;
+
+}
+
+/* =====================================================
+   COUNTDOWN PREMIUM
+===================================================== */
+
+.time-box {
+
+    animation:
+        floating 6s ease infinite;
+
+}
+
+.time-box:nth-child(2) {
+
+    animation-delay:1s;
+
+}
+
+.time-box:nth-child(3) {
+
+    animation-delay:2s;
+
+}
+
+.time-box:nth-child(4) {
+
+    animation-delay:3s;
+
+}
+
+.time-box span {
+
+    text-shadow:
+
+        0 0 15px
+        rgba(48,213,200,.55);
+
+}
+
+/* =====================================================
+   ENCUESTA
+===================================================== */
+
+.survey-card {
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.survey-card::before {
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(48,213,200,.15),
+            transparent
+        );
+
+    opacity:0;
+
+    transition:.4s;
+
+}
+
+.survey-card:hover::before {
+
+    opacity:1;
+
+}
+
+/* =====================================================
+   CARRUSEL
+===================================================== */
+
+.slide img {
+
+    transition:
+        transform .8s ease;
+
+}
+
+.slide:hover img {
+
+    transform:
+        scale(1.05);
+
+}
+
+.carousel-arrow {
+
+    backdrop-filter:
+        blur(20px);
+
+}
+
+.carousel-arrow:hover {
+
+    box-shadow:
+
+        0 0 25px
+        rgba(48,213,200,.45);
+
+}
+
+/* =====================================================
+   FORMULARIO RSVP
+===================================================== */
+
+#rsvpForm input,
+#rsvpForm select,
+#rsvpForm textarea {
+
+    transition:
+        all .35s ease;
+
+}
+
+#rsvpForm input:hover,
+#rsvpForm select:hover,
+#rsvpForm textarea:hover {
+
+    border-color:
+
+        rgba(48,213,200,.5);
+
+}
+
+/* =====================================================
+   FOOTER PREMIUM
+===================================================== */
+
+footer {
+
+    background:
+
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(0,0,0,.18)
+        );
+
+}
+
+footer h3 {
+
+    text-shadow:
+
+        0 0 20px
+        rgba(48,213,200,.25);
+
+}
+
+/* =====================================================
+   REVEAL ON SCROLL
+===================================================== */
+
+.reveal {
+
+    opacity:0;
+
+    transform:
+        translateY(60px);
+
+    transition:
+
+        opacity .9s ease,
+        transform .9s ease;
+
+}
+
+.reveal.active {
+
+    opacity:1;
+
+    transform:
+        translateY(0);
+
+}
+
+/* =====================================================
+   SCROLLBAR PREMIUM
+===================================================== */
+
+::-webkit-scrollbar {
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track {
+
+    background:
+
+        rgba(255,255,255,.05);
+
+}
+
+::-webkit-scrollbar-thumb {
+
+    border-radius:999px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            var(--turquoise),
+            var(--turquoise-dark)
+        );
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+    background:
+
+        linear-gradient(
+            180deg,
+            var(--turquoise-light),
+            var(--turquoise)
+        );
+
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width:1024px){
+
+    .glass-card {
+
+        padding:45px;
+
+    }
+
+    .slide img {
+
+        height:500px;
+
+    }
+
+    .hero-title {
+
+        font-size:5rem;
+
+    }
+
+}
+
+/* =====================================================
+   MOVIL GRANDE
+===================================================== */
+
+@media (max-width:768px){
+
+    .hero {
+
+        padding:40px 20px;
+
+    }
+
+    .hero-title {
+
+        font-size:4rem;
+
+    }
+
+    .countdown-grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .survey-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .dress-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .slide img {
+
+        height:380px;
+
+    }
+
+    .glass-card {
+
+        padding:35px;
+
+    }
+
+    .hero-buttons {
+
+        flex-direction:column;
+
+    }
+
+}
+
+/* =====================================================
+   MOVIL PEQUEÑO
+===================================================== */
+
+@media (max-width:480px){
+
+    .hero-title {
+
+        font-size:3rem;
+
+    }
+
+    .hero-description {
+
+        font-size:.95rem;
+
+    }
+
+    .countdown-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .time-box span {
+
+        font-size:2.4rem;
+
+    }
+
+    .glass-card {
+
+        padding:28px;
+
+        border-radius:24px;
+
+    }
+
+    .slide img {
+
+        height:280px;
+
+    }
+
+    .audio-control {
+
+        width:55px;
+        height:55px;
+
+        font-size:1.1rem;
+
+    }
+
+}
+
+/* =====================================================
+   EFECTO CONFETI (ACTIVADO POR JS)
+===================================================== */
+
+.confetti {
+
+    position:fixed;
+
+    width:10px;
+    height:10px;
+
+    pointer-events:none;
+
+    z-index:99999;
+
+    animation:
+        confettiFall 4s linear forwards;
+
+}
+
+@keyframes confettiFall {
+
+    from {
+
+        transform:
+            translateY(-100px)
+            rotate(0deg);
+
+        opacity:1;
+
+    }
+
+    to {
+
+        transform:
+            translateY(120vh)
+            rotate(1080deg);
+
+        opacity:0;
+
+    }
+
+}
+
+/* =====================================================
+   CLASES UTILITARIAS
+===================================================== */
+
+.hidden {
+
+    display:none !important;
+
+}
+
+.fade-in {
+
+    animation:
+        fadeUp .8s ease;
+
+}
+
+.zoom-in {
+
+    animation:
+        zoomIn .8s ease;
+
+}
+
+.float {
+
+    animation:
+        floating 5s ease infinite;
+
+}
+
+/* =====================================================
+   FIN STYLE.CSS
+   TOTAL APROX:
+   PARTE 1 + PARTE 2 + PARTE 3
+   ~1,000+ líneas equivalentes de estilo
+===================================================== */
