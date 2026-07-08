@@ -1,8 +1,19 @@
-# Comandos para subir esta actualización
+# Commit y push sugeridos para Fase 4
 
+Ejecuta estos comandos dentro de la carpeta del repositorio en Visual Studio Code:
+
+```bash
 git status
-git add index.html style.css FASE_3_4_MARCO_CIRCULAR_STICKERS.md COMMIT_PUSH.txt
-git commit -m "Enmarca stickers con fondo cuadrado en circulo"
+git add index.html assets/distribucion FASE_4_DISTRIBUCION.md TEXTOS_DISTRIBUCION.md COMMIT_PUSH.txt
+git commit -m "Agrega materiales de distribucion y codigo QR"
 git push
+```
 
-# Si GitHub Pages tarda en reflejar el cambio, abrir en incógnito o usar Ctrl + F5.
+Si quieres subir absolutamente todo cambio pendiente:
+
+```bash
+git status
+git add -A
+git commit -m "Actualiza fase 4 de distribucion"
+git push
+```
