@@ -1,18 +1,8 @@
-COMANDOS PARA ACTUALIZAR EL REPOSITORIO
-
-1. Copia estos archivos y carpeta dentro de tu repositorio:
-
-index.html
-style.css
-assets/stickers/
-FASE_3_3_STICKERS_DINAMICA.md
-COMMIT_PUSH.txt
-
-2. En Visual Studio Code abre la terminal dentro del repositorio y ejecuta:
+# Comandos para subir esta actualización
 
 git status
-git add index.html style.css assets/stickers FASE_3_3_STICKERS_DINAMICA.md COMMIT_PUSH.txt
-git commit -m "Agrega stickers a dinamica y aviso importante"
+git add index.html style.css FASE_3_4_MARCO_CIRCULAR_STICKERS.md COMMIT_PUSH.txt
+git commit -m "Enmarca stickers con fondo cuadrado en circulo"
 git push
 
-3. Después de GitHub Pages, abre la invitación en modo incógnito o actualiza con Ctrl + F5.
+# Si GitHub Pages tarda en reflejar el cambio, abrir en incógnito o usar Ctrl + F5.
