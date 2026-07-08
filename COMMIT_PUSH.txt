@@ -1,0 +1,18 @@
+COMANDOS PARA ACTUALIZAR EL REPOSITORIO
+
+1. Copia estos archivos y carpeta dentro de tu repositorio:
+
+index.html
+style.css
+assets/stickers/
+FASE_3_3_STICKERS_DINAMICA.md
+COMMIT_PUSH.txt
+
+2. En Visual Studio Code abre la terminal dentro del repositorio y ejecuta:
+
+git status
+git add index.html style.css assets/stickers FASE_3_3_STICKERS_DINAMICA.md COMMIT_PUSH.txt
+git commit -m "Agrega stickers a dinamica y aviso importante"
+git push
+
+3. Después de GitHub Pages, abre la invitación en modo incógnito o actualiza con Ctrl + F5.

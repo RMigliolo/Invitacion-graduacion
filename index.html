@@ -353,13 +353,21 @@
 
         </p>
 
-        <div class="survey-grid">
+        <div class="survey-grid survey-grid-stickers">
 
             <div
-                class="survey-card"
-                data-option="Divertido">
+                class="survey-card sticker-survey-card"
+                data-option="Divertido"
+                role="button"
+                tabindex="0"
+                aria-label="Elegir Divertido">
 
-                😄
+                <figure class="survey-sticker-frame">
+                    <img
+                        src="assets/stickers/sticker-divertido.png"
+                        alt="Sticker divertido"
+                        loading="lazy">
+                </figure>
 
                 <span>
 
@@ -370,10 +378,18 @@
             </div>
 
             <div
-                class="survey-card"
-                data-option="Fiestero">
+                class="survey-card sticker-survey-card"
+                data-option="Fiestero"
+                role="button"
+                tabindex="0"
+                aria-label="Elegir Fiestero">
 
-                🎉
+                <figure class="survey-sticker-frame">
+                    <img
+                        src="assets/stickers/sticker-fiestero.png"
+                        alt="Sticker fiestero"
+                        loading="lazy">
+                </figure>
 
                 <span>
 
@@ -384,14 +400,44 @@
             </div>
 
             <div
-                class="survey-card"
-                data-option="Aburrido">
+                class="survey-card sticker-survey-card"
+                data-option="Aburrido"
+                role="button"
+                tabindex="0"
+                aria-label="Elegir Aburrido">
 
-                😴
+                <figure class="survey-sticker-frame">
+                    <img
+                        src="assets/stickers/sticker-aburrido.png"
+                        alt="Sticker aburrido"
+                        loading="lazy">
+                </figure>
 
                 <span>
 
                     Aburrido
+
+                </span>
+
+            </div>
+
+            <div
+                class="survey-card sticker-survey-card"
+                data-option="Atrevido"
+                role="button"
+                tabindex="0"
+                aria-label="Elegir Atrevido">
+
+                <figure class="survey-sticker-frame">
+                    <img
+                        src="assets/stickers/sticker-atrevido.png"
+                        alt="Sticker atrevido"
+                        loading="lazy">
+                </figure>
+
+                <span>
+
+                    Atrevido
 
                 </span>
 
@@ -473,22 +519,33 @@
     <!-- AVISO -->
     <!-- ========================= -->
 
-    <section class="section notice-card">
+    <section class="section notice-card notice-card-with-sticker">
 
-        <h2>
+        <div class="notice-text">
 
-            Aviso Importante
+            <h2>
 
-        </h2>
+                Aviso Importante
 
-        <p>
+            </h2>
 
-            Esta invitación es personal,
-            no acompañante.
+            <p>
 
-            Gracias por su comprensión.
+                Esta invitación es personal,
+                no acompañante.
 
-        </p>
+                Gracias por su comprensión.
+
+            </p>
+
+        </div>
+
+        <figure class="notice-sticker" aria-label="Sticker de Gabino dando el aviso">
+            <img
+                src="assets/stickers/sticker-aviso.png"
+                alt="Gabino dando el aviso importante"
+                loading="lazy">
+        </figure>
 
     </section>
 

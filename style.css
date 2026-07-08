@@ -3421,3 +3421,265 @@ body::after,
         padding-right: 16px;
     }
 }
+
+/* =====================================================
+   FASE 3.2 - AJUSTES FINOS DE DISTRIBUCIÓN
+   - Botón de apertura más abajo
+   - Bloque de canción centrado/justificado
+===================================================== */
+
+#openInvitationBtn {
+    margin-top: 32px;
+}
+
+.song-request-card {
+    text-align: center;
+}
+
+.song-request-card label {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    padding-inline: 36px;
+    text-align: center;
+}
+
+.song-request-card p {
+    max-width: 620px;
+    margin: 12px auto 18px !important;
+    text-align: justify;
+    color: rgba(255,255,255,.74) !important;
+}
+
+.song-request-card input {
+    text-align: left;
+}
+
+@media (max-width: 480px) {
+    #openInvitationBtn {
+        margin-top: 28px;
+    }
+
+    .song-request-card label {
+        padding-inline: 24px;
+        line-height: 1.55;
+    }
+
+    .song-request-card p {
+        text-align: justify;
+        line-height: 1.7;
+    }
+}
+
+/* =====================================================
+   FASE 3.3 - STICKERS EN DINÁMICA Y AVISO IMPORTANTE
+   - 4 opciones: Divertido, Fiestero, Aburrido, Atrevido
+   - Stickers responsivos dentro de tarjetas
+   - Aviso importante con sticker lateral
+===================================================== */
+
+.survey-grid-stickers {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: stretch;
+    gap: clamp(14px, 2vw, 24px);
+}
+
+.sticker-survey-card {
+    display: flex;
+    min-height: 245px;
+    padding: clamp(18px, 2.4vw, 28px) clamp(14px, 1.8vw, 22px);
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    isolation: isolate;
+}
+
+.survey-sticker-frame {
+    width: 100%;
+    min-height: clamp(130px, 14vw, 165px);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.survey-sticker-frame img {
+    width: min(100%, 165px);
+    height: clamp(122px, 13vw, 165px);
+    object-fit: contain;
+    display: block;
+    filter:
+        drop-shadow(0 18px 24px rgba(0,0,0,.28))
+        drop-shadow(0 0 14px rgba(48,213,200,.14));
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.sticker-survey-card:hover .survey-sticker-frame img,
+.sticker-survey-card.selected .survey-sticker-frame img {
+    transform: translateY(-4px) scale(1.035);
+    transition: transform .35s var(--premium-ease, ease);
+}
+
+.sticker-survey-card span {
+    position: relative;
+    z-index: 2;
+    margin-top: 14px;
+    font-size: clamp(.95rem, 1.35vw, 1.12rem);
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    line-height: 1.25;
+}
+
+.notice-card-with-sticker {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(130px, 18vw, 190px);
+    align-items: center;
+    gap: clamp(18px, 3vw, 34px);
+    text-align: left;
+}
+
+.notice-card-with-sticker .notice-text,
+.notice-card-with-sticker .notice-sticker {
+    position: relative;
+    z-index: 2;
+}
+
+.notice-card-with-sticker .notice-text {
+    min-width: 0;
+}
+
+.notice-card-with-sticker h2 {
+    text-align: left;
+}
+
+.notice-card-with-sticker p {
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+}
+
+.notice-sticker {
+    width: clamp(128px, 18vw, 190px);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notice-sticker img {
+    width: 100%;
+    max-width: 190px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    filter:
+        drop-shadow(0 20px 28px rgba(0,0,0,.30))
+        drop-shadow(0 0 16px rgba(255,255,255,.18));
+    transform: rotate(1deg);
+}
+
+@media (max-width: 980px) {
+    .survey-grid-stickers {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sticker-survey-card {
+        min-height: 220px;
+    }
+}
+
+@media (max-width: 640px) {
+    .survey-grid-stickers {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 34px;
+    }
+
+    .sticker-survey-card {
+        min-height: 188px;
+        padding: 16px 10px 18px;
+        border-radius: 20px;
+    }
+
+    .survey-sticker-frame {
+        min-height: 112px;
+    }
+
+    .survey-sticker-frame img {
+        width: min(100%, 118px);
+        height: 112px;
+    }
+
+    .sticker-survey-card span {
+        margin-top: 10px;
+        font-size: .82rem;
+        letter-spacing: .055em;
+    }
+
+    .notice-card-with-sticker {
+        grid-template-columns: minmax(0, 1fr) 92px;
+        gap: 12px;
+        text-align: left;
+        padding-right: 14px;
+    }
+
+    .notice-card-with-sticker h2 {
+        font-size: clamp(1.55rem, 7.2vw, 2rem);
+        text-align: left;
+        margin-bottom: 14px;
+    }
+
+    .notice-card-with-sticker p {
+        text-align: left;
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+
+    .notice-sticker {
+        width: 92px;
+        align-self: center;
+    }
+}
+
+@media (max-width: 380px) {
+    .survey-grid-stickers {
+        gap: 12px;
+    }
+
+    .sticker-survey-card {
+        min-height: 172px;
+        padding: 14px 8px 16px;
+    }
+
+    .survey-sticker-frame {
+        min-height: 96px;
+    }
+
+    .survey-sticker-frame img {
+        width: min(100%, 98px);
+        height: 96px;
+    }
+
+    .notice-card-with-sticker {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-right: 16px;
+    }
+
+    .notice-card-with-sticker h2,
+    .notice-card-with-sticker p {
+        text-align: center;
+    }
+
+    .notice-sticker {
+        width: 110px;
+        margin-top: 4px;
+    }
+}
