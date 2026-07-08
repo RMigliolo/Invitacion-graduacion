@@ -2973,3 +2973,451 @@ footer {
         animation: none !important;
     }
 }
+
+/* =====================================================
+   FASE 3.1 - AJUSTE MÓVIL AUTOMÁTICO
+   Objetivo:
+   - Eliminar desplazamiento horizontal en celulares.
+   - Centrar hero, tarjetas, botones y formulario.
+   - Hacer que la invitación se adapte al ancho real del teléfono.
+   - Conservar versión web sin romper el diseño premium.
+===================================================== */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+}
+
+@supports (overflow: clip) {
+    html,
+    body {
+        overflow-x: clip;
+    }
+}
+
+body {
+    min-width: 0;
+}
+
+body > *,
+.hero,
+.section,
+footer,
+.premium-bg,
+#particles,
+.intro-screen {
+    max-width: 100%;
+}
+
+.premium-bg,
+#particles,
+.intro-screen,
+.hero,
+.carousel,
+.map-container,
+.glass-card,
+.notice-card {
+    overflow-x: hidden;
+}
+
+.hero,
+.section,
+footer {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-content,
+.intro-content,
+.glass-card,
+.notice-card,
+.rsvp-section,
+footer,
+#rsvpForm,
+.form-grid,
+.song-request-card,
+.carousel,
+.map-container {
+    min-width: 0;
+}
+
+img,
+iframe,
+video,
+canvas,
+svg {
+    max-width: 100%;
+}
+
+.hero-content {
+    width: min(100%, 950px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-glow {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 90vw;
+}
+
+.hero-title,
+.section h2,
+footer h3,
+.hero-subtitle,
+.section-label,
+.hero-description,
+.section p {
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+.hero-date,
+.hero-buttons {
+    width: 100%;
+}
+
+.hero-date div,
+.hero-buttons a,
+.hero-buttons button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Evita que elementos decorativos fijos generen ancho extra en Android/Chrome. */
+body::after,
+.premium-orb,
+.premium-light,
+.graduation-cap,
+.particle,
+.confetti {
+    backface-visibility: hidden;
+    transform-style: flat;
+}
+
+@media (max-width: 768px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100vw;
+    }
+
+    body::after {
+        animation: none !important;
+        transform: none !important;
+    }
+
+    .premium-bg {
+        inset: 0;
+        width: 100vw;
+        max-width: 100vw;
+        overflow: hidden;
+    }
+
+    .premium-orb {
+        max-width: 82vw;
+        opacity: .28;
+    }
+
+    .premium-orb-1 {
+        left: -34vw;
+    }
+
+    .premium-orb-2 {
+        right: -36vw;
+    }
+
+    .premium-orb-3 {
+        left: 8vw;
+        bottom: -24vw;
+    }
+
+    .hero {
+        width: 100%;
+        max-width: 100vw;
+        min-height: auto;
+        padding:
+            76px
+            max(18px, env(safe-area-inset-right))
+            92px
+            max(18px, env(safe-area-inset-left));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 430px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .hero-title {
+        width: 100%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: clamp(3.15rem, 16.2vw, 4.45rem);
+        line-height: .98;
+        letter-spacing: .015em;
+        text-align: center;
+    }
+
+    .hero-subtitle {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        line-height: 1.55;
+        text-wrap: balance;
+    }
+
+    .divider {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 42%;
+    }
+
+    .hero-description {
+        width: min(100%, 390px);
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: clamp(.98rem, 4.2vw, 1.08rem);
+        line-height: 1.72;
+        text-align: center;
+        text-wrap: pretty;
+    }
+
+    .hero-date,
+    .hero-buttons {
+        width: 100%;
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+    }
+
+    .hero-date {
+        flex-direction: column;
+    }
+
+    .hero-date div,
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        max-width: 360px;
+        min-width: 0;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .glass-card,
+    .notice-card,
+    .rsvp-section {
+        width: calc(100% - 28px);
+        max-width: 560px;
+        margin: 30px auto;
+        padding: 34px 20px;
+        border-radius: 24px;
+    }
+
+    .section h2 {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: clamp(1.85rem, 8.8vw, 2.45rem);
+        line-height: 1.22;
+        letter-spacing: .045em;
+        text-align: center;
+        text-wrap: balance;
+    }
+
+    .section p,
+    .rsvp-lead,
+    .notice-card p {
+        width: 100%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .countdown-grid,
+    .survey-grid,
+    .dress-grid,
+    .form-grid {
+        width: 100%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .countdown-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .time-box,
+    .survey-card,
+    .dress-card,
+    .song-request-card,
+    .form-field {
+        min-width: 0;
+    }
+
+    .carousel,
+    .slides,
+    .slide,
+    .slide img,
+    .map-container,
+    .map-container iframe {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .slides {
+        align-items: stretch;
+    }
+
+    .slide {
+        flex: 0 0 100%;
+        min-width: 100%;
+    }
+
+    .slide img {
+        height: clamp(270px, 66vw, 390px);
+        object-position: center center;
+    }
+
+    #rsvpForm {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #rsvpForm input,
+    #rsvpForm select,
+    #rsvpForm textarea {
+        max-width: 100%;
+    }
+
+    .graduation-cap {
+        width: clamp(74px, 23vw, 106px);
+        top: 78px;
+        right: max(12px, env(safe-area-inset-right));
+        opacity: .68;
+    }
+
+    .hero-glow {
+        width: min(88vw, 420px);
+        height: min(88vw, 420px);
+    }
+
+    .audio-control {
+        right: max(14px, env(safe-area-inset-right));
+        bottom: max(14px, env(safe-area-inset-bottom));
+    }
+
+    /* En teléfono no se aplican desplazamientos hover que puedan ensanchar el layout. */
+    .glass-card:hover,
+    .notice-card:hover,
+    .time-box:hover,
+    .survey-card:hover,
+    .dress-card:hover,
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .audio-control:hover {
+        transform: none;
+        animation: none;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .intro-content {
+        width: calc(100% - 28px);
+        max-width: 430px;
+        padding: 34px 20px;
+    }
+
+    .hero {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: clamp(3rem, 16.6vw, 3.9rem);
+    }
+
+    .hero-description {
+        width: min(100%, 350px);
+    }
+
+    .hero-date,
+    .hero-buttons {
+        max-width: 100%;
+    }
+
+    .hero-date div,
+    .btn-primary,
+    .btn-secondary {
+        max-width: 100%;
+    }
+
+    .glass-card,
+    .notice-card,
+    .rsvp-section {
+        width: calc(100% - 22px);
+        padding: 30px 18px;
+        margin-top: 26px;
+        margin-bottom: 26px;
+    }
+
+    .section h2 {
+        font-size: clamp(1.72rem, 8.6vw, 2.12rem);
+        letter-spacing: .035em;
+    }
+
+    .section-label,
+    .hero-subtitle {
+        letter-spacing: .10em;
+    }
+
+    .song-request-card {
+        padding: 22px 16px;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .hero-title {
+        font-size: clamp(2.65rem, 16vw, 3.25rem);
+    }
+
+    .countdown-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .glass-card,
+    .notice-card,
+    .rsvp-section {
+        width: calc(100% - 18px);
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
